@@ -71,8 +71,10 @@ namespace NetMiddlemanClient
                 this.StateLabel.Content = "正在连接到远程服务器";
                 NMClient.Connect(NMipaddress, NMport);
                 this.StateLabel.Content = "连接成功";
+                //NMClient.Client.Send(Encoding.UTF8.GetBytes("dasijfowfaf"));
+
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 this.StateLabel.Content = "无法初始化TCP连接";
             }
@@ -86,5 +88,18 @@ namespace NetMiddlemanClient
             this.StopListenButton.IsEnabled = false;
             this.StateLabel.Content = "已关闭监听端口";
         }
+
+        #region 多线程写入控件委托
+        private delegate void AddLogItemDelegate(Label label, string log);
+        private void ChangeLogContent(Label label, string log)
+        {
+            label.Content = log;
+        }
+
+        private void ChangeLogContentInvoke(string log)
+        {
+            this.Dispatcher.BeginInvoke(new AddLogItemDelegate(ChangeLogContent), this.StateLabel, log);
+        }
+        #endregion
     }
 }
