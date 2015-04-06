@@ -16,6 +16,7 @@ using System.Net.Sockets;
 using System.Net;
 using System.Threading;
 
+//外网端
 namespace NetMiddlemanServer
 {
     /// <summary>

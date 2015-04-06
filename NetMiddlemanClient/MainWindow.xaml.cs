@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Net.Sockets;
 
+//内网端
 namespace NetMiddlemanClient
 {
     /// <summary>
